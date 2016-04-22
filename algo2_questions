@@ -1,0 +1,112 @@
+Undirected Graphs
+
+	Question 1
+Nonrecursive depth-first search. Implement depth-first search in an undirected graph without using recursion.
+	Question 2
+Diameter and center of a tree. Given a connected graph with no cycles
+Diameter: design a linear-time algorithm to find the longest simple path in the graph.
+Center: design a linear-time algorithm to find a vertex such that its maximum distance from any other vertex is minimized.
+	Question 3
+Euler cycle. An Euler cycle in a graph is a cycle (not necessarily simple) that uses every edge in the graph exactly one.
+Show that a connected graph has an Euler cycle if and only if every vertex has even degree.
+Design a linear-time algorithm to determine whether a graph has an Euler cycle, and if so, find one.
+	
+
+Directed Graphs
+	Question 1
+Shortest directed cycle. Given a digraph G, design an efficient algorithm to find a directed cycle with the minimum number of edges (or report that the graph is acyclic). The running time of your algorithm should be at most proportional to V(E+V) and use space proportional to E+V, where V is the number of vertices and E is the number of edges.
+	Question 2
+Hamiltonian path in a DAG. Given a directed acyclic graph, design a linear-time algorithm to determine whether it has a Hamiltonian path (a simple path that visits every vertex), and if so, find one.
+	Question 3
+Reachable vertex.
+DAG: Design a linear-time algorithm to determine whether a DAG has a vertex that is reachable from every other vertex, and if so, find one.
+Digraph: Design a linear-time algorithm to determine whether a digraph has a vertex that is reachable from every other vertex, and if so, find one.
+	
+
+Minimum Spanning Trees
+	Question 1
+Bottleneck minimum spanning tree. Given a connected edge-weighted graph, design an efficient algorithm to find a minimum bottleneck spanning tree. The bottleneck capacity of a spanning tree is the weights of its largest edge. A minimum bottleneck spanning tree is a spanning tree of minimum bottleneck capacity.
+	Question 2
+Is an edge in a MST. Given an edge-weighted graph G and an edge e, design a linear-time algorithm to determine whether e appears in some MST of G.
+Note: Since your algorithm must take linear time in the worst case, you cannot afford to compute the MST itself.
+	Question 3
+Minimum-weight feedback edge set. A feedback edge set of a graph is a subset of edges that contains at least one edge from every cycle in the graph. If the edges of a feedback edge set are removed, the resulting graph is acyclic. Given an edge-weighted graph, design an efficient algorithm to find a feedback edge set of minimum weight. Assume the edge weights are positive.
+
+Shortest Paths
+	Question 1
+Monotonic shortest path. Given an edge-weighted digraph G, design an ElogE algorithm to find a monotonic shortest path from s to every other vertex. A path is monotonic if the sequence of edge weights along the path are either strictly increasing or strictly decreasing.
+	Question 2
+Second shortest path. Given an edge-weighted digraph and let P be a shortest path from vertex s to vertex t. Design an ElogV algorithm to find a path other than P from s to t that is as short as possible. Assume all of the edge weights are strictly positive.
+	Question 3
+Shortest path with one skippable edge. Given an edge-weighted digraph, design an ElogV algorithm to find a shortest path from s to t where you can change the weight of any one edge to zero. Assume the edge weights are nonnegative.
+
+
+Maximum Flow
+	Question 1
+Fattest path. Given an edge-weighted digraph and two vertices s and t, design an ElogE algorithm to find a fattest path from s to t. The bottleneck capacity of a path is the minimum weight of an edge on the path. A fattest path is a path such that no other path has a higher bottleneck capacity.
+	Question 2
+Perfect matchings in k-regular bipartite graphs. Suppose that there are n men and n women at a dance and that each man knows exactly k women and each woman knows exactly k men (and relationships are mutual). Show that it is always possible to arrange a dance so that each man and woman are matched with someone they know.
+	Question 3
+Maximum weight closure problem. A subset of vertices S in a digraph is closed if there are no edges pointing from S to a vertex outside S. Given a digraph with weights (positive or negative) on the vertices, find a closed subset of vertices of maximum total weight.
+	
+
+Radix Sorts
+	Question 1
+2-sum. Given an array a of N 64-bit integers and a target value T, determine whether there are two distinct integers i and j such that ai+aj=T. Your algorithm should run in linear time in the worst case.
+	Question 2
+American flag sort. Given an array with N distinct values between 0 and R-1, rearrange them in ascending order in linear time and with extra space at most proportional to R.
+	Question 3
+Cyclic rotations. Two strings s and t are cyclic rotations of one another if they have the same length and s consists of a suffix of t followed by a prefix of t. For example, "suffixsort" and "sortsuffix" are cyclic rotations.
+Given N distinct strings, each of length L, design an algorithm to determine whether there exists a pair of distinct strings that are cyclic rotations of one another. For example, the following list of N=12 strings of length L=10 contains exactly one pair of strings ("suffixsort" and "sortsuffix") that are cyclic rotations of one another.
+algorithms   polynomial   sortsuffix   boyermoore
+structures   minimumcut   suffixsort   stackstack
+binaryheap   digraphdfs   stringsort   digraphbfs
+The order of growth of the running time should be NL2 (or better) in the worst case. Assume that the alphabet size R is a small constant.
+	
+
+Tries
+	Question 1
+Prefix free codes. In data compression, a set of binary strings is prefix free if no string is a prefix of another. For example, {01,10,0010,1111} is prefix free, but {01,10,0010,10100} is not because 10 is a prefix of 10100. Design an efficient algorithm to determine if a set of binary strings is prefix-free. The running time of your algorithm should be proportional the number of bits in all of the binary stings.
+	Question 2
+Boggle. Boggle is a word game played on an 4-by-4 grid of tiles, where each tile contains one letter in the alphabet. The goal is to find all words in the dictionary that can be made by following a path of adjacent tiles (with no tile repeated), where two tiles are adjacent if they are horizontal, vertical, or diagonal neighbors.
+	Question 3
+Suffix trees. Learn about and implement suffix trees, the ultimate string searching data structure.
+
+
+Substring Search
+	Question 1
+Cyclic rotation of a string. A string s is a cyclic rotation of a string t if s and t have the same length and s consists of a suffix of t followed by a prefix of t. For example, "winterbreak" is a cyclic rotation of "breakwinter" (and vice versa). Design a linear-time algorithm to determine whether one string is a cyclic rotation of another.
+	Question 2
+Tandem repeat. A tandem repeat of a base string b within a string s is a substring of s consisting of at least one consecutive copy of the base string b. Given b and s, design an algorithm to find a tandem repeat of b within s of maximum length. Your algorithm should run in time proportional to M+N, where M is length of b and N is the length s.
+For example, if s is "abcabcababcaba" and b is "abcab", then "abcababcab" is the tandem substring of maximum length (2 copies).
+	Question 3
+Longest palindromic substring. Given a string s, find the longest substring that is a palindrome in expected linearithmic time.
+Signing bonus: Do it in linear time in the worst case.
+	
+
+Regular Expressions
+	Question 1
+Challenging REs. Construct a regular expression for each of the following languages over the binary alphabet or prove that no such regular expression is possible:
+All strings except 11 or 111.
+Strings with 1 in every odd-number bit position.
+Strings with an equal number of 0s and 1s.
+Strings with at least two 0s and at most one 1.
+Strings that when interpreted as a binary integer are a multiple of 3.
+Strings with no two consecutive 1s.
+Strings that are palindromes (same forwards and backwards).
+Strings with an equal number of substrings of the form 01 and 10.
+	Question 2
+Exponential-size DFA. Design a regular expressions of length N such that any DFA that recognizes the same language has an exponential number of states.
+	Question 3
+Extensions to NFA. Add to NFA.java the ability to handle multiway or, wildcard, and the + closure operator.
+
+
+Data Compression
+	Question 1
+Ternary Huffman codes. Generalize the Huffman algorithm to codewords over the ternary alphabet (0, 1, and 2) instead of the binary alphabet. That is, given a bytestream, find a prefix-free ternary code that uses as few trits (0s, 1s, and 2s) as possible. Prove that it yields optimal prefix-free ternary code.
+	Question 2
+Uniquely decodable code.
+Identify an optimal uniquely-decodable code that is neither prefix free nor suffix tree.
+Identify two optimal prefix-free codes for the same input that have a different distribution of codeword lengths.
+	Question 3
+Move-to-front coding. Design an algorithm to implement move-to-front encoding so that each operation takes logarithmic time in the worst case. That is, maintain alphabet of symbols in a list. A symbol is encoded as the number of symbols that precede it in the list. After encoding a symbol, move it to the front of the list.

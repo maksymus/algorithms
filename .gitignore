@@ -1,0 +1,8 @@
+.settings
+.cache
+.classpath
+.project
+*.swp
+target
+bin
+algorithms.iml
