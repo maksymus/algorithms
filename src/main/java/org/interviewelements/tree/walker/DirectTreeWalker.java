@@ -1,7 +1,5 @@
 package org.interviewelements.tree.walker;
 
-import algorithm.tree.walker.Tree.Node;
-
 public class DirectTreeWalker implements TreeWalker {
 
     @Override
@@ -12,9 +10,9 @@ public class DirectTreeWalker implements TreeWalker {
         System.out.println();
     }
 
-    private void walk(Node<?> node) {
+    private void walk(Tree.Node<?> node) {
         System.out.print(node.getData() + " ");
-        for (Node<?> leaves : node.getLeaves()) {
+        for (Tree.Node<?> leaves : node.getLeaves()) {
             walk(leaves);
         }
     }

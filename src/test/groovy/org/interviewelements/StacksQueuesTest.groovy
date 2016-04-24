@@ -31,4 +31,20 @@ class StacksQueuesTest extends Specification {
         [1, 2]              || [2, 1]
         [1, 5, 3, 4, 6]     || [6, 5, 5, 5, 1]
     }
+
+    def "test TwoStackQueue"() {
+        when:
+        new StacksQueues.TwoStackQueue().dequeue()
+        then:
+        thrown(NoSuchElementException)
+
+//        expect:
+//        pushStackMax(list) == max
+//        where:
+//        list                || max
+//        [1]                 || [1]
+//        [1, 2]              || [2, 1]
+//        [1, 5, 3, 4, 6]     || [6, 5, 5, 5, 1]
+    }
+
 }

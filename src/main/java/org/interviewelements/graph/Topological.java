@@ -1,7 +1,7 @@
 package org.interviewelements.graph;
 
-import algorithm.graph.Graph.AdjList;
-import algorithm.graph.Graph.Edge;
+import org.interviewelements.graph.Graph.AdjList;
+import org.interviewelements.graph.Graph.Edge;
 
 import java.util.ArrayList;
 import java.util.Deque;

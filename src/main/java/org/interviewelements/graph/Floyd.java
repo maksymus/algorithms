@@ -1,6 +1,5 @@
 package org.interviewelements.graph;
 
-import algorithm.graph.Graph.Edge;
 
 /**
  * Floyd algorithm implementation. Shortest path between all vertexes.
@@ -45,25 +44,25 @@ public class Floyd {
         return matrix[a][z];
     }
 
-    public Edge pathR(int a, int z) {
+    public Graph.Edge pathR(int a, int z) {
         return graph.getEdge(path[a][z], z);
     }
 
     public static void main(String[] args) {
         Graph g = new Graph(false, 5);
 
-        g.add(new Edge(0, 1, 1));
-        g.add(new Edge(1, 2, 1));
-        g.add(new Edge(1, 3, 3));
-        g.add(new Edge(2, 3, 1));
-        g.add(new Edge(3, 4, 1));
-        g.add(new Edge(0, 4, 5));
+        g.add(new Graph.Edge(0, 1, 1));
+        g.add(new Graph.Edge(1, 2, 1));
+        g.add(new Graph.Edge(1, 3, 3));
+        g.add(new Graph.Edge(2, 3, 1));
+        g.add(new Graph.Edge(3, 4, 1));
+        g.add(new Graph.Edge(0, 4, 5));
 
         Floyd floyd = new Floyd(g);
 
         System.out.println(floyd.dist(0, 4));
 
-        for (Edge e = floyd.pathR(0, 4); e != null; e = floyd.pathR(0, e.from())) {
+        for (Graph.Edge e = floyd.pathR(0, 4); e != null; e = floyd.pathR(0, e.from())) {
             System.out.println(e.from() + " " + e.to());
         }
     }

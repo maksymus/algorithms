@@ -1,7 +1,6 @@
 package org.interviewelements.graph.search;
 
-import algorithm.graph.Graph;
-import algorithm.graph.Graph.Edge;
+import org.interviewelements.graph.Graph;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -34,12 +33,12 @@ public class DFS extends Search {
 
     public static void main(String[] args) {
         Graph graph = new Graph(6);
-        graph.add(new Edge(0, 2));
-        graph.add(new Edge(2, 1));
-        graph.add(new Edge(2, 3));
-        graph.add(new Edge(1, 4));
-        graph.add(new Edge(1, 5));
-        graph.add(new Edge(4, 5));
+        graph.add(new Graph.Edge(0, 2));
+        graph.add(new Graph.Edge(2, 1));
+        graph.add(new Graph.Edge(2, 3));
+        graph.add(new Graph.Edge(1, 4));
+        graph.add(new Graph.Edge(1, 5));
+        graph.add(new Graph.Edge(4, 5));
 
         DFS dfs = new DFS(graph);
         dfs.setVisitor(x -> System.out.println(x));

@@ -1,8 +1,6 @@
 package org.interviewelements.graph.search;
 
-import algorithm.graph.Graph;
-import algorithm.graph.Graph.AdjList;
-import algorithm.graph.Graph.Edge;
+import org.interviewelements.graph.Graph;
 
 public abstract class Search {
 
@@ -38,9 +36,9 @@ public abstract class Search {
             if (x == z)
                 return true;
 
-            AdjList adjs = graph.getAdjacencies(x);
+            Graph.AdjList adjs = graph.getAdjacencies(x);
 
-            for (Edge edge : adjs) {
+            for (Graph.Edge edge : adjs) {
                 put(edge.to());
             }
         }

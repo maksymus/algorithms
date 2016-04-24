@@ -1,7 +1,5 @@
 package org.interviewelements.tree.walker;
 
-import algorithm.tree.walker.Tree.Node;
-
 public class ReverseTreeWalker implements TreeWalker {
 
     @Override
@@ -12,8 +10,8 @@ public class ReverseTreeWalker implements TreeWalker {
         System.out.println();
     }
 
-    private void walk(Node<?> node) {
-        for (Node<?> leaves : node.getLeaves()) {
+    private void walk(Tree.Node<?> node) {
+        for (Tree.Node<?> leaves : node.getLeaves()) {
             walk(leaves);
         }
         System.out.print(node.getData() + " ");

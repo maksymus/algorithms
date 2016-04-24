@@ -1,6 +1,6 @@
 package org.interviewelements.graph;
 
-import algorithm.graph.Graph.Edge;
+import org.interviewelements.graph.Graph.Edge;
 
 import java.util.Arrays;
 

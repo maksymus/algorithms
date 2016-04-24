@@ -1,8 +1,5 @@
 package org.interviewelements.graph;
 
-import algorithm.graph.Graph.AdjList;
-import algorithm.graph.Graph.Edge;
-
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -21,12 +18,12 @@ public class Dijkstra {
     };
 
     private double[] weights;
-    private Edge[] shortestPathTree;
+    private Graph.Edge[] shortestPathTree;
 
     public Dijkstra(Graph graph, int s) {
         int vertexCount = graph.getVCount();
         weights = new double[vertexCount];
-        shortestPathTree = new Edge[vertexCount];
+        shortestPathTree = new Graph.Edge[vertexCount];
 
         for (int v = 0; v < vertexCount; v++)
             weights[v] = Double.MAX_VALUE;
@@ -42,8 +39,8 @@ public class Dijkstra {
             if (v != s && shortestPathTree[v] == null)
                 return;
 
-            AdjList adjacencies = graph.getAdjacencies(v);
-            for (Edge edge : adjacencies) {
+            Graph.AdjList adjacencies = graph.getAdjacencies(v);
+            for (Graph.Edge edge : adjacencies) {
                 int w = edge.to();
                 double p = weights[v] + edge.weight();
                 if (p < weights[w]) {
@@ -56,7 +53,7 @@ public class Dijkstra {
         }
     }
 
-    public Edge pathR(int v) {
+    public Graph.Edge pathR(int v) {
         return shortestPathTree[v];
     }
 
@@ -67,19 +64,19 @@ public class Dijkstra {
     public static void main(String[] args) {
         Graph g = new Graph(true, 7);
 
-        g.add(new Edge(3, 2, 12));
-        g.add(new Edge(3, 1, 1.1));
-        g.add(new Edge(1, 4, 2.3));
-        g.add(new Edge(2, 4, 2.5));
-        g.add(new Edge(4, 5, 1.5));
-        g.add(new Edge(5, 6, 1.9));
-        g.add(new Edge(6, 2, 2.1));
+        g.add(new Graph.Edge(3, 2, 12));
+        g.add(new Graph.Edge(3, 1, 1.1));
+        g.add(new Graph.Edge(1, 4, 2.3));
+        g.add(new Graph.Edge(2, 4, 2.5));
+        g.add(new Graph.Edge(4, 5, 1.5));
+        g.add(new Graph.Edge(5, 6, 1.9));
+        g.add(new Graph.Edge(6, 2, 2.1));
 
         Dijkstra dijkstra = new Dijkstra(g, 3);
 
         System.out.println(dijkstra.dist(2));
 
-        for (Edge e = dijkstra.pathR(2); e != null; e = dijkstra.pathR(e.from())) {
+        for (Graph.Edge e = dijkstra.pathR(2); e != null; e = dijkstra.pathR(e.from())) {
             System.out.println(e.from());
         }
     }
