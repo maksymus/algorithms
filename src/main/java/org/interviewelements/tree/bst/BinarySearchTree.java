@@ -1,13 +1,13 @@
-package org.interviewelements.tree;
+package org.interviewelements.tree.bst;
+
+import org.interviewelements.tree.Tree;
 
 /**
  * Binary search tree implementation.
  */
-public class BinaryTree<T extends Comparable<T>> extends Tree<T> {
+public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 
-    /**
-     * Node of binary tree. Holds references to left and right children.
-     */
+    /** Node of binary tree. Holds references to left and right children. */
     class BinaryNode extends Node<T> {
         protected BinaryNode left;
         protected BinaryNode right;
@@ -20,9 +20,7 @@ public class BinaryTree<T extends Comparable<T>> extends Tree<T> {
         }
     }
 
-    /**
-     * Root of binary tree. <code>null</code> if tree is empty.
-     */
+    /** Root of binary tree. <code>null</code> if tree is empty */
     BinaryNode root;
 
     /**
@@ -210,15 +208,15 @@ public class BinaryTree<T extends Comparable<T>> extends Tree<T> {
     }
 
     public static void main(String[] args) {
-        BinaryTree<Integer> binaryTree = new BinaryTree<Integer>();
+        BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<Integer>();
 
-        binaryTree.insert(2);
-        binaryTree.insert(1);
-        binaryTree.insert(3);
-        binaryTree.insert(4);
-        binaryTree.insert(5);
-        binaryTree.insert(0);
+        binarySearchTree.insert(2);
+        binarySearchTree.insert(1);
+        binarySearchTree.insert(3);
+        binarySearchTree.insert(4);
+        binarySearchTree.insert(5);
+        binarySearchTree.insert(0);
 
-        System.out.println(binaryTree.root.right.size);
+        System.out.println(binarySearchTree.root.right.size);
     }
 }

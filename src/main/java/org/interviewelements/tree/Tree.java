@@ -6,12 +6,12 @@ package org.interviewelements.tree;
  * @author maksym
  * @param <T>
  */
-public abstract class Tree<T extends Comparable<T>> {
+public interface Tree<T> {
 
     public static class Node<S> {
         public S data;
 
-        Node(S data) {
+        protected Node(S data) {
             this.data = data;
         }
 
@@ -20,12 +20,11 @@ public abstract class Tree<T extends Comparable<T>> {
         }
     }
 
-    // public abstract T find(T key);
-    public abstract boolean contains(T key);
+    boolean contains(T key);
 
-    public abstract void insert(T key);
+    void insert(T key);
 
-    public abstract void delete(T key);
+    void delete(T key);
 
-    public abstract int size();
+    int size();
 }

@@ -1,4 +1,4 @@
-package org.interviewelements.tree;
+package org.interviewelements.tree.bst;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -13,7 +13,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * @author maksym
  * @param <T>
  */
-public class RedBlackTree<T extends Comparable<T>> extends BinaryTree<T> {
+public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     class RedBlackNode extends BinaryNode {
         boolean red = true;

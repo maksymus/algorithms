@@ -1,6 +1,6 @@
 package org.interviewelements.tree.walker;
 
-import java.util.ServiceLoader;
+import java.util.Arrays;
 
 public class Notation {
 
@@ -19,10 +19,7 @@ public class Notation {
         tree.add(plus2, "a");
         tree.add(plus2, "c");
 
-        ServiceLoader<TreeWalker> walkers = ServiceLoader.load(TreeWalker.class);
-
-        for (TreeWalker walker : walkers) {
-            walker.walk(tree);
-        }
+        TreeWalker[] walkers = {new DirectTreeWalker(), new SymetricTreeWalker(), new ReverseTreeWalker()};
+        Arrays.asList(walkers).stream().forEach(walker -> walker.walk(tree));
     }
 }

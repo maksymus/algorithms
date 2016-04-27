@@ -3,11 +3,8 @@ package org.interviewelements.tree;
 /**
  * 2-3 Tree implementation.
  */
-public class BTree<T extends Comparable<T>> extends Tree<T> {
+public class BTree<T extends Comparable<T>> implements Tree<T> {
 
-    /**
-	 * 
-	 */
     class InternalNode {
         private T first;
         private T second;
@@ -47,16 +44,6 @@ public class BTree<T extends Comparable<T>> extends Tree<T> {
         public T getSecond() {
             return second;
         }
-
-//        @Override
-//        public boolean equals(Object obj) {
-//            return EqualsBuilder.reflectionEquals(this, obj);
-//        }
-//
-//        @Override
-//        public int hashCode() {
-//            return HashCodeBuilder.reflectionHashCode(this);
-//        }
     }
 
     /**
@@ -97,27 +84,6 @@ public class BTree<T extends Comparable<T>> extends Tree<T> {
         public void add(T element) {
             data.add(element);
         }
-
-//        @Override
-//        public boolean equals(Object obj) {
-//            if (!(obj instanceof BTree.BTreeNode)) {
-//                return false;
-//            }
-//
-//            if (this == obj) {
-//                return true;
-//            }
-//
-//            BTreeNode rhs = (BTree.BTreeNode) obj;
-//
-//            return new EqualsBuilder().append(this.child1, rhs.child1).append(this.child2, rhs.child2)
-//                    .append(this.child3, rhs.child3).append(this.data, rhs.data).isEquals();
-//        }
-//
-//        @Override
-//        public int hashCode() {
-//            return HashCodeBuilder.reflectionHashCode(this);
-//        }
 
         @Override
         public String toString() {

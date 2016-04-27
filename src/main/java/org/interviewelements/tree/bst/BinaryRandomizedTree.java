@@ -1,8 +1,8 @@
-package org.interviewelements.tree;
+package org.interviewelements.tree.bst;
 
 import java.util.Random;
 
-public class BinaryRandomizedTree<T extends Comparable<T>> extends BinaryTree<T> {
+public class BinaryRandomizedTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     private Random random = new Random();
 
