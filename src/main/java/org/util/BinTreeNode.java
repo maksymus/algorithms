@@ -21,4 +21,8 @@ public class BinTreeNode<S> {
     public BinTreeNode getRight() {
         return right;
     }
+
+    public S getKey() {
+        return key;
+    }
 }

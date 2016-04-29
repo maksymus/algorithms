@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Prefix tree implementation.
  */
-public class Trie extends Tree<String> {
+public class Trie implements Tree<String> {
 
     private class TrieNode extends Node<Character> {
 
