@@ -28,4 +28,28 @@ class BSearchTest extends Specification {
         [1, 2]                          | 2     | -1
         [1, 2]                          | 10    | -1
     }
+
+    def "completionSearch test"() {
+        expect:
+        BSearch.completionSearch(salaries, budget) == res
+
+        where:
+        salaries                            | budget  | res
+        [90d, 30d, 100d, 40d, 20d]          | 210     | 60
+        [90d, 30d, 100d, 40d, 20d]          | 280     | 100
+        [90d, 30d, 100d, 40d, 20d]          | 50      | 10
+        [90d, 30d, 100d, 40d, 20d]          | 281     | 0
+    }
+
+    def "sqrt test"() {
+        expect:
+        def sqrt = BSearch.sqrt(x)
+        Math.abs(x - sqrt * sqrt) < 0.0000001 == true
+
+        where:
+        x           | res
+        2d          | 0
+        0d          | 0
+        1231231d    | 0
+    }
 }

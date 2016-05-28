@@ -35,5 +35,27 @@ public class Array {
 
         return permuted;
     }
+
+    /**
+     * For an array of integers, give an algorithm to determine if there are three elements that sum to zero.
+     * What are the time and space complexity? Generalize to the case where the sum of k elements is 0?
+     */
+    public static boolean sumsToZero(int[] arr, int k) {
+        return sumsToZero(arr, k, 0, 1, 0);
+    }
+
+    private static boolean sumsToZero(int[] arr, int k, int currentSum, int numOfElem, int pos) {
+        for (int i = pos; i < arr.length; i++) {
+            int newSum = currentSum + arr[i];
+            if (newSum == 0 && numOfElem == k)
+                return true;
+
+            if (numOfElem < k)
+                if (sumsToZero(arr, k, newSum, numOfElem + 1, i + 1))
+                    return true;
+        }
+
+        return false;
+    }
 }
 
