@@ -8,7 +8,7 @@ public class Hashes {
     public static int stringHash(String str) {
         int res = 0, prime = 997, modulus = 20;
         for (char c : str.toCharArray()) {
-            res = (res * prime + c) % modulus; // & (modulus + 1)
+            res = (res * prime + c) % modulus;
         }
         return res;
     }
