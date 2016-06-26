@@ -1,8 +1,6 @@
 package org.interviewelements;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -10,13 +8,6 @@ public class Sorting {
     public static class Person {
         int key;
         public Person(int key) { this.key = key; }
-
-        @Override
-        public String toString() {
-            return "Person{" +
-                    "key=" + key +
-                    '}';
-        }
     }
 
     /**
@@ -52,6 +43,33 @@ public class Sorting {
 //            keyOffsets.put(person.key, keyOffsets.get(person.key) + 1);
 //            person = tmpPerson;
 //        }
+    }
+
+    /**
+     * Problem 13.5, pg. 99 : Given sorted arrays A and B of lengths n and m respectively, return
+     * an array C containing elements common to A and B. The array C should be free of duplicates.
+     * How would you perform this intersection if—(l.) n&m and (2.) n cm?
+     */
+    public static <T extends Comparable<T>> List<T> intersectArrays(List<T> a, List<T> b) {
+        int aSize = a.size();
+        int bSize = b.size();
+
+        List<T> list = new ArrayList<>();
+        for (int i = 0, aCounter = 0, bCounter = 0; i < aSize + bSize; i++) {
+            if (aCounter >= aSize) {
+                list.add(b.get(bCounter++));
+            } else if (bCounter >= bSize) {
+                list.add(a.get(aCounter++));
+            } else {
+                if (a.get(aCounter).compareTo(b.get(bCounter)) <= 0) {
+                    list.add(a.get(aCounter++));
+                } else {
+                    list.add(b.get(bCounter++));
+                }
+            }
+        }
+
+        return list;
     }
 
     private static <T> void swap(T[] arr, int from , int to) {

@@ -21,10 +21,7 @@ public interface Tree<T> {
     }
 
     boolean contains(T key);
-
     void insert(T key);
-
     void delete(T key);
-
     int size();
 }

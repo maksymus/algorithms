@@ -2,9 +2,9 @@ package org.util;
 
 public class BinTreeNode<S> {
     private S key;           // sorted by key
-    private BinTreeNode left, right;  // left and right subtrees
+    private BinTreeNode<S> left, right;  // left and right subtrees
 
-    public BinTreeNode(S key, BinTreeNode left, BinTreeNode right) {
+    public BinTreeNode(S key, BinTreeNode<S> left, BinTreeNode<S> right) {
         this.key = key;
         this.left = left;
         this.right = right;
@@ -14,12 +14,20 @@ public class BinTreeNode<S> {
         this.key = key;
     }
 
-    public BinTreeNode getLeft() {
+    public BinTreeNode<S> getLeft() {
         return left;
     }
+    
+    public void setLeft(BinTreeNode<S> left) {
+        this.left = left;
+    }
 
-    public BinTreeNode getRight() {
+    public BinTreeNode<S> getRight() {
         return right;
+    }
+    
+    public void setRight(BinTreeNode<S> right) {
+        this.right = right;
     }
 
     public S getKey() {

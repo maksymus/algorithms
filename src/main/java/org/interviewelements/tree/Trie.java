@@ -10,7 +10,7 @@ public class Trie implements Tree<String> {
 
     private class TrieNode extends Node<Character> {
 
-        private Map<Character, TrieNode> leaves = new HashMap<Character, TrieNode>();
+        private Map<Character, TrieNode> leaves = new HashMap<>();
         private boolean terminal;
 
         TrieNode(Character data, boolean terminal) {
