@@ -10,6 +10,7 @@ public class Fibonacci {
         System.out.println(fib(2));
         System.out.println(fib(3));
         System.out.println(fib(10));
+        System.out.println(fib(10000));
     }
 
     public static BigInteger fib(int n) {
