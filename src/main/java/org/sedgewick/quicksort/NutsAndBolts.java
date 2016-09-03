@@ -1,6 +1,6 @@
 package org.sedgewick.quicksort;
 
-/*
+/**
  * Nuts and bolts.
  * A disorganized carpenter has a mixed pile of N nuts and N bolts.
  * The goal is to find the corresponding pairs of nuts and bolts.

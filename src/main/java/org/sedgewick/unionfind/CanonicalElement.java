@@ -1,5 +1,7 @@
 package org.sedgewick.unionfind;
 
+import java.util.stream.IntStream;
+
 /**
  * Add a method find() to the union-find data type so that find(i) returns the largest element in the connected
  * component containing i. The operations, union(), connected(), and find() should all take logarithmic time or better.
@@ -13,9 +15,7 @@ public class CanonicalElement extends WeightedQuickUnion {
         super(n);
 
         canonicals = new int[n];
-//        IntStream.range(0, n).forEach(i -> {
-//            canonicals[i] = i;
-//        });
+        IntStream.range(0, n).forEach(i -> canonicals[i] = i);
     }
 
     public void union(int p, int q) {
