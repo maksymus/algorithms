@@ -1,8 +1,8 @@
-package org.interviewelements.tree;
-
-import org.util.BinTreeNode;
+package org.saurabhschool;
 
 import java.util.Objects;
+
+import org.util.BinTreeNode;
 
 public class BinTree {
 
@@ -84,9 +84,41 @@ public class BinTree {
 
         return left != null ? left : right;
     }
+    
+    /**
+     * Print all Possible Paths
+     */
+    public static void printPaths(BinTreeNode<?> root) {
+        printPaths(root, new Object[root.getSize()], 0);
+    }
+    
+    private static void printPaths(BinTreeNode<?> node, Object[] objs, int length) {
+        if (node == null) 
+            return;
+        
+        objs[length++] = node.getKey();
+        
+        if (node.getLeft() == null && node.getRight() == null) {
+            printPath(objs, length);
+        } else {
+            printPaths(node.getLeft(), objs, length);
+            printPaths(node.getRight(), objs, length);
+        }
+    }
+    
+    private static void printPath(Object[] objs, int length) {
+        for (int i = 0; i < length; i++) {
+            System.out.print(objs[i] + ",");
+        }
+        System.out.println();
+    }
+    
 
     public static void main(String[] args) {
-        BinTreeNode root = new BinTreeNode(30, new BinTreeNode(20), new BinTreeNode(40, new BinTreeNode(35), null));
-        System.out.println(maxHeight(root));
+        BinTreeNode<Integer> root = new BinTreeNode<>(30, 
+                new BinTreeNode<>(20), new BinTreeNode<>(40, 
+                        new BinTreeNode<>(35), null));
+        printPaths(root);
+//        System.out.println(maxHeight(root));
     }
 }

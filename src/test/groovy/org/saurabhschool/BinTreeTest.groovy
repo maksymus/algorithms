@@ -1,8 +1,10 @@
-package org.interviewelements.bintree
-import org.interviewelements.tree.BinTree
+package org.saurabhschool
+import org.saurabhschool.BinTree
 import org.util.BinTreeNode
+
 import spock.lang.Shared
 import spock.lang.Specification
+
 /**
  *      node1           node2              node5          node9
  *      /  \            /  \               /  \           /   \
