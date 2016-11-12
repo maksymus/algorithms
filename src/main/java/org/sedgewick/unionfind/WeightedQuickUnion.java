@@ -3,8 +3,8 @@ package org.sedgewick.unionfind;
 import java.util.stream.IntStream;
 
 public class WeightedQuickUnion {
-    private int[] id;
-    private int[] sz;
+    protected int[] id;
+    protected int[] sz;
 
     public WeightedQuickUnion(int n) {
         id = new int[n];
@@ -49,6 +49,8 @@ public class WeightedQuickUnion {
         uf.union(1, 5);
         uf.union(2, 1);
         uf.union(3, 1);
+        
+        uf.union(4, 1);
 
         System.out.println(uf.connected(0, 2));
         System.out.println(uf.connected(0, 4));

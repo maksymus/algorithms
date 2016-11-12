@@ -21,6 +21,11 @@ public class Graphs {
         
         List<Point> path = mazeSolver.solve(new Point(0, 0), new Point(0, 0));
         System.out.println(path);
+        
+        boolean hasCycle = UnionFindCycle.hasCycle(new Pair[] {
+            new Pair(0, 1), new Pair(1, 2), new Pair(2, 3)    
+        }, 4);
+        System.out.println("Has cycle: " + hasCycle);
     }
 }
 
@@ -92,5 +97,46 @@ class MazeSolver {
         return point.x >= 0 && point.x < maze.length 
                 && point.y >= 0 && point.y < maze[0].length
                 && maze[point.x][point.y] == WHITE;
+    }
+}
+
+/**
+ * Detect Cycle in a an Undirected Graph using Union-Find
+ */
+class Pair {
+    int from; int to;
+    public Pair(int from, int to) {
+        this.from = from;
+        this.to = to;
+    }
+}
+
+class UnionFindCycle {
+    public static boolean hasCycle(Pair[] pairs, int edges) {
+        int[] uf = new int[edges];
+        for (int i = 0; i < uf.length; i++)
+            uf[i] = i;
+
+        for (Pair pair : pairs) {
+            int x = find(uf, pair.from);
+            int y = find(uf, pair.to);
+            
+            if (x == y)
+                return true;
+            
+            union(uf, pair.from, pair.to);
+        }
+
+        return false;
+    }
+
+    private static void union(int[] uf, int from, int to) {
+        uf[to] = from;
+    }
+
+    private static int find(int[] uf, int from) {
+        int cur = from;
+        for (; uf[cur] != cur; cur = uf[cur]);
+        return cur;
     }
 }

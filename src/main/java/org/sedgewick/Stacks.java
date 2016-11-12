@@ -1,4 +1,4 @@
-package org.saurabhschool;
+package org.sedgewick;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
