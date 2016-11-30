@@ -24,6 +24,14 @@ import java.util.Set;
  */
 public class Boggle {
     
+    private char[][] boggle;
+    private Set<String> dictionary;
+
+    public Boggle(char[][] boggle, Set<String> dictionary) {
+        this.boggle = boggle;
+        this.dictionary = dictionary;
+    }
+    
     private static enum Move {
         UP {
             public int x(int x) { return x - 1; }
@@ -64,12 +72,6 @@ public class Boggle {
         public abstract int y(int y);
     };
     
-    private static final Set<String> dictionary = new HashSet<>(Arrays.asList(new String[] { "geek", "for", "quiz", "go" }));
-    private static final char[][] boggle = { 
-            { 'g', 'i', 'z' }, 
-            { 'u', 'e', 'k' }, 
-            { 'q', 's', 'e' } };
-    
     private boolean isWorld(String text) {
         return dictionary.contains(text);
     }
@@ -78,7 +80,7 @@ public class Boggle {
         return x >= 0 && y >= 0 && x < boggle.length && y < boggle.length;
     }
     
-    public void findWords() {
+    public Set<String> findWords() {
         HashSet<String> words = new HashSet<>();
         
         for (int i = 0; i < boggle.length; i++) {
@@ -88,7 +90,7 @@ public class Boggle {
             }
         }
         
-        words.forEach(word -> System.out.println(word));
+        return words;
     }
 
     private void findWords(String string, Set<String> words, boolean[][] visited, int i, int j) {
@@ -112,6 +114,13 @@ public class Boggle {
     }
     
     public static void main(String[] args) {
-        new Boggle().findWords();
+        Set<String> dictionary = new HashSet<>(Arrays.asList(new String[] { "geek", "for", "quiz", "go" }));
+        char[][] boggle = { 
+                { 'g', 'i', 'z' }, 
+                { 'u', 'e', 'k' }, 
+                { 'q', 's', 'e' } };
+        
+        Set<String> words = new Boggle(boggle, dictionary).findWords();
+        words.forEach(word -> System.out.println(word));
     }
 }
