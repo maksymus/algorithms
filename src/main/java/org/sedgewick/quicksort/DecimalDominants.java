@@ -1,6 +1,8 @@
 package org.sedgewick.quicksort;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * Decimal dominants.
@@ -26,84 +28,87 @@ import java.util.Arrays;
  * boundary positions on which to call quickselect is at most m - 1.
  */
 class DecimalDominants {
-    private int[] arr;
-    private int m;
 
-    public DecimalDominants(int[] arr, int m) {
-        this.m = m;
-        this.arr = Arrays.copyOf(arr, arr.length);
-    }
-
-    private void quickselect() {
-
+    /**
+     * Find all element appearing more than <code>m</code> times.
+     */
+    public List<Integer> findDominants(int[] arr, int m) {
+        int steps = arr.length / m; 
+        IntStream.range(0, steps).forEach(step -> quickselect(arr, step * m));
+        return Arrays.asList();
     }
     
-    private void partition(int pos) {
-        partition(pos, 0, arr.length - 1);
-    }
-
-    // 3 way partitioning as described by Robert Sedgewick
-    private int partition(int pos, int start, int end) {
-        int pivot = arr[pos];
-        int low = start, mid = start, hi = end;
+    /**
+     *  Find k-th element smallest element of array.  
+     */
+    public int quickselect(int[] arr, int k) {
+        int lo = 0;
+        int hi = arr.length - 1;
         
-        while (mid <= hi) {
-            if (arr[mid] < pivot)
-                swap(low++, mid++);
-            else if (arr[mid] > pivot) 
-                swap(hi--, mid);
-            else
-                mid++;
+        while (lo < hi) {
+            int pivot = partition(arr, lo, hi);
+            if (pivot == k) 
+                return arr[pivot];
+            if (pivot < k) 
+                lo = pivot + 1;
+            if (pivot > k)
+                hi = pivot - 1;
         }
         
-        return mid;
+        return arr[k];
     }
     
-    // standard partitioning 
-    private int partition(int low, int high) {
-        int pivot = arr[high];
+    /**
+     * Quicksort 
+     */
+    public void sort(int[] arr) {
+        sort(arr, 0, arr.length - 1);
+    }
+    
+    private void sort(int[] arr, int lo, int hi) {
+        if (lo >= hi)
+            return;
         
-        int pos = low;
-        
-        for (int i = low; i < high; i++) {
-            if (arr[i] < pivot) {
-                swap(pos++, i);
-            }
-        }
-        
-        swap(pos, high);
-        
-        return pos;
+        int partition = partition(arr, lo, hi);
+        sort(arr, lo, partition - 1);
+        sort(arr, partition + 1, hi);
     }
 
-    private void swap(int i, int j) {
+    private int partition(int[] arr, int low, int high) {
+        int pivot = arr[low];
+        int i = low, j = high + 1; 
+        
+        while (true) {
+            while (arr[++i] <= pivot)
+                if (i == high) break;
+            
+            while (arr[--j] > pivot)
+                if (j == low) break;
+            
+            if (i >= j)
+                break;
+
+            swap(arr, i, j);
+        }
+        
+        swap(arr, low, j);
+        
+        return j;
+    }
+
+    private void swap(int[] arr, int i, int j) {
         int tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
     }
 
     public static void main(String[] args) {
-        int idx = 8;
         
-        int[] arr = new int[] { 7, 3, 7, 5, 1, 2, 7, 8, 2, 7 };
+//        int[] arr = new int[] { 7, 3, 7, 5, 1, 2, 7, 8, 2, 7 }; // [1, 2, 2, 3, 5, 7, 7, 7, 7, 8]
 //        int[] arr = new int[] { 1, 3, 7, 5, 1, 2, 7, 8, 2, 7 };
-        DecimalDominants dd = new DecimalDominants(arr, 10);
-        dd.partition(idx);
-        System.out.println("pivot: " + arr[idx] + " " + Arrays.toString(dd.arr));
+        int[] arr = new int[] { 3, 1, 7, 2, 4, 0, 5, 9, 6, 8 };
         
-//        for (int i = 0; i < 10; i++) {
-//            int[] arr = new int[] { 1, 7, 7, 5, 1, 2, 7, 8, 2, 3 };
-//            DecimalDominants dd = new DecimalDominants(arr, 10);
-//            dd.partition(i);
-//            System.out.println("pivot: " + arr[i] + " " + Arrays.toString(dd.arr));
-//        }
-//        dd.partition(5);
-//        System.out.println(Arrays.toString(dd.arr));
-//        dd.partition(8);
-//        System.out.println(Arrays.toString(dd.arr));
-
-
-//        1, 3, 7, 5, 1, 2, 7, 8, 2, 7
-//        1, 3, 2, 5, 7, 2, 7, 8, 7, 1
+        DecimalDominants dd = new DecimalDominants();
+        System.out.println(dd.quickselect(arr, arr.length / 2));
     }
 }
