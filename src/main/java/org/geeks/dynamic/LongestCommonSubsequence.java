@@ -1,4 +1,4 @@
-package org.geeks;
+package org.geeks.dynamic;
 
 /**
  * LCS Problem Statement: Given two sequences, find the length of longest subsequence present in both of them. 

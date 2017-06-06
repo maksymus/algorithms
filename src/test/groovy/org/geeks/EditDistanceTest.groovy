@@ -1,5 +1,6 @@
 package org.geeks
 
+import org.geeks.dynamic.EditDistance
 import spock.lang.Specification
 
 class EditDistanceTest extends Specification {

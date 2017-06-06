@@ -2,7 +2,7 @@ package org.interviewelements.graph;
 
 
 /**
- * Floyd algorithm implementation. Shortest path between all vertexes.
+ * Floyd-Warshall algorithm implementation. Shortest path between all vertexes.
  */
 public class Floyd {
     private Graph graph;

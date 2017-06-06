@@ -1,4 +1,4 @@
-package org.geeks;
+package org.geeks.dynamic;
 
 public class EditDistance {
     public int calculate(String str1, String str2) {

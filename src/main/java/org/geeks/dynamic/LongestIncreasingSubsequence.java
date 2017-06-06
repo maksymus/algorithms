@@ -1,4 +1,4 @@
-package org.geeks;
+package org.geeks.dynamic;
 
 import java.util.Arrays;
 

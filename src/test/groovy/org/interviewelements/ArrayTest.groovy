@@ -26,4 +26,16 @@ class ArrayTest extends Specification {
         [10, 1, 4, -2, -1, 13, 1]   || true
         [10, 1, 4, -2, -1, 13]      || false
     }
+    
+    def "rotateKSteps test"() {
+        expect:
+        Array.rotateKSteps(list as int[], k) == res
+
+        where:
+        list                        | k  || res
+        []                          | 1  || []
+        [1, 2, -3]                  | 0  || [1, 2, -3]
+        [1, 2, -3]                  | -1 || [1, 2, -3]
+        [1, 2, 3, 4, 5, 6, 7]       | 3  || [5, 6, 7, 1, 2, 3, 4] 
+    }
 }

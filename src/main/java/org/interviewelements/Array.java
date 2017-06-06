@@ -57,5 +57,35 @@ public class Array {
 
         return false;
     }
+    
+    /**
+     * Rotate an array of n elements to the right by k steps.
+     * For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4]. 
+     * How many different ways do you know to solve this problem?
+     * 
+     * 1. Divide the array two parts: 1,2,3,4 and 5, 6
+     * 2. Reverse first part: 4,3,2,1,5,6
+     * 3. Reverse second part: 4,3,2,1,6,5
+     * 4. Reverse the whole array: 5,6,1,2,3,4
+     */
+    public static int[] rotateKSteps(int[] arr, int k) {
+        if (k <= 0 || k >= arr.length)
+            return arr;
+        
+        arr = reverse(arr, 0, arr.length - k);
+        arr = reverse(arr, arr.length - k, arr.length);
+        arr = reverse(arr, 0, arr.length);
+        
+        return arr;
+    }
+    
+    private static int[] reverse(int[] arr, int start, int end) {
+        for (int i = start, j = end - 1; i < j; i++, j--) {
+            int tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+        }
+        return arr;
+    }
 }
 

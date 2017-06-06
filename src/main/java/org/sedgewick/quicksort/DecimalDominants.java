@@ -2,6 +2,10 @@ package org.sedgewick.quicksort;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -34,12 +38,19 @@ class DecimalDominants {
      */
     public List<Integer> findDominants(int[] arr, int m) {
         int steps = arr.length / m; 
-        IntStream.range(0, steps).forEach(step -> quickselect(arr, step * m));
+        IntStream.range(1, steps + 1).forEach(step -> {
+            quickselect(arr, step * m - 1);
+            System.out.printf("%d: %d\n", step * m - 1, arr[step * m  - 1]);
+        });
+
+        System.out.println();
+        
         return Arrays.asList();
     }
     
     /**
      *  Find k-th element smallest element of array.  
+     *  k-th element will retain it's sorted position in array. 
      */
     public int quickselect(int[] arr, int k) {
         int lo = 0;
@@ -103,12 +114,21 @@ class DecimalDominants {
     }
 
     public static void main(String[] args) {
+        List<Integer> ints = IntStream.generate(() -> new Random().nextInt(15)).limit(100).boxed()
+                .collect(Collectors.toList());
         
-//        int[] arr = new int[] { 7, 3, 7, 5, 1, 2, 7, 8, 2, 7 }; // [1, 2, 2, 3, 5, 7, 7, 7, 7, 8]
-//        int[] arr = new int[] { 1, 3, 7, 5, 1, 2, 7, 8, 2, 7 };
-        int[] arr = new int[] { 3, 1, 7, 2, 4, 0, 5, 9, 6, 8 };
+        int arr[] = new int[ints.size()];
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = ints.get(i);
         
         DecimalDominants dd = new DecimalDominants();
-        System.out.println(dd.quickselect(arr, arr.length / 2));
+        dd.findDominants(arr, 10);
+        
+        Map<Integer, Long> stat = ints.stream()
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+           
+        stat.keySet().stream().sorted().forEach(i -> System.out.printf("[%d] %d times \n", i, stat.get(i)));
+        
+        System.out.println(Arrays.toString(arr));
     }
 }
