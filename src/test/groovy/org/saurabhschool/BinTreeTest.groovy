@@ -1,7 +1,6 @@
 package org.saurabhschool
-import org.saurabhschool.BinTree
-import org.util.BinTreeNode
 
+import org.util.BinTreeNode
 import spock.lang.Shared
 import spock.lang.Specification
 

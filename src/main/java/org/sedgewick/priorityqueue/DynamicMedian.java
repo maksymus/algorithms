@@ -1,6 +1,7 @@
 package org.sedgewick.priorityqueue;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -18,10 +19,10 @@ public class DynamicMedian {
     // 5, 3, 7, 20 -> 6
 
     /* left part of stream (3, 5) */
-    private PriorityQueue<Integer> minPriorityQueue = new PriorityQueue<Integer>((i1, i2) -> i2.compareTo(i1));
+    private PriorityQueue<Integer> minPriorityQueue = new PriorityQueue<>(Comparator.reverseOrder());
 
     /* right part of stream (7, 20) */
-    private PriorityQueue<Integer> maxPriorityQueue = new PriorityQueue<Integer>((i1, i2) -> i1.compareTo(i2));
+    private PriorityQueue<Integer> maxPriorityQueue = new PriorityQueue<>(Comparator.naturalOrder());
 
     public void insert(int i) {
         if (maxPriorityQueue.isEmpty() && minPriorityQueue.isEmpty()) {
