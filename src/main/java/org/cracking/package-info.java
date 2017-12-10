@@ -1,3 +1,5 @@
 package org.cracking;
 
-//www.CrackingTheCodinglnterview.com
+//CRACKING the CODING INTERVIEW
+//        6th Edition
+//        GAYLE LAAKMANN MCDOWELL
