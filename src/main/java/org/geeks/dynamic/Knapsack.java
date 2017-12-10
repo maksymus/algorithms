@@ -1,5 +1,8 @@
 package org.geeks.dynamic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Knapsack {
     public int packrec(int capacity, int[] values, int[] weights) {
         return packrec(capacity, values, weights, 0);
@@ -15,8 +18,13 @@ public class Knapsack {
         return Math.max(values[i] + packrec(capacity - weights[i], values, weights, i + 1), 
                 packrec(capacity, values, weights, i + 1));
     }
-    
+
     public int pack(int capacity, int[] values, int[] weights) {
+        int[][] table = _pack(capacity, values, weights);
+        return table[values.length][capacity];
+    }
+
+    private int[][] _pack(int capacity, int[] values, int[] weights) {
         int n = values.length;
         
         int i, w;
@@ -34,10 +42,41 @@ public class Knapsack {
             }
         }
       
-        return K[n][capacity];
+        return K;
+    }
+
+    private List<Integer> items(int capacity, int[] values, int[] weights) {
+        int[][] table = _pack(capacity, values, weights);
+
+        List<Integer> items = new ArrayList<>();
+
+        int item = values.length;
+        while (capacity > 0) {
+            while (item > 0 && table[item][capacity] == table[item-1][capacity])
+                item--;
+
+            capacity = capacity - weights[item-1];
+            if (capacity >= 0)
+                items.add(item - 1);
+        }
+
+        return items;
     }
     
     public static void main(String[] args) {
-        System.out.println(new Knapsack().pack(50, new int[] { 60, 100, 120 }, new int[] { 10, 20, 30 }));
+        Knapsack knapsack = new Knapsack();
+        System.out.println(knapsack.pack(50, new int[] { 60, 100, 120 }, new int[] { 10, 20, 30 }));
+
+        int[][] ints = knapsack._pack(8, new int[]{5, 5, 2, 4, 3, 4, 3, 7}, new int[]{4, 2, 6, 5, 3, 5, 2, 5});
+
+        for (int i = 0; i < ints.length; i++) {
+            for (int j = 0; j < ints[0].length; j++) {
+                System.out.print(ints[i][j] + "\t");
+            }
+            System.out.println();
+        }
+
+        List<Integer> items = knapsack.items(8, new int[]{5, 5, 2, 4, 3, 4, 3, 7}, new int[]{4, 2, 6, 5, 3, 5, 2, 5});
+        System.out.println(items);
     }
 }
