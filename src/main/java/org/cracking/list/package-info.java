@@ -23,8 +23,8 @@ class Node<T> {
 
     @Override
     public String toString() {
-        String str = data != null ? data.toString() : "";
-        return str + (next != null ? "->" + next.toString() : "");
+        return data != null ? data.toString() : "";
+//        return str + (next != null ? "->" + next.toString() : "");
     }
 
     public static <T> Node build(T ... data) {
