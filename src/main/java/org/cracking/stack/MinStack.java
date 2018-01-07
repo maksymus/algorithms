@@ -9,9 +9,21 @@ import java.util.Objects;
  */
 public class MinStack {
     public static void main(String[] args) {
+        Stack<Integer> minStack = new Stack<>();
+        minStack.push(4);
+        minStack.push(5);
+        minStack.push(7);
+        minStack.push(2);
+        minStack.push(8);
+        minStack.push(9);
+        minStack.push(1);
+        minStack.push(3);
 
+        while (!minStack.isEmpty()) {
+            System.out.println(String.format("top: %d min %d", minStack.top(), minStack.min()));
+            minStack.pop();
+        }
     }
-
 
     private static class Stack<T extends Comparable<T>> {
         private Node<T> stack;
@@ -39,25 +51,22 @@ public class MinStack {
             return data;
         }
 
+        public T top() {
+            if (stack == null)
+                throw new IllegalArgumentException("stack is empty");
+
+            return stack.data;
+        }
+
         public T min() {
             if (stack == null)
                 throw new IllegalArgumentException("stack is empty");
 
             return min.data;
         }
-    }
 
-    private static class Node<T> {
-        Node<T> next;
-        T data;
-
-        public Node(T data, Node<T> next) {
-            this.next = next;
-            this.data = data;
-        }
-
-        public Node(T data) {
-            this.data = data;
+        public boolean isEmpty() {
+            return stack == null;
         }
     }
 }
