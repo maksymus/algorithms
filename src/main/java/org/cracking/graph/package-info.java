@@ -21,6 +21,10 @@ class Tree {
         private Node left;
         private Node right;
 
+        public Node(T value) {
+            this.value = value;
+        }
+
         public Node(T value, Node left, Node right) {
             this.value = value;
             this.left = left;
