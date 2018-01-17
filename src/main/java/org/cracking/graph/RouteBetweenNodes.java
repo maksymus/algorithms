@@ -39,7 +39,7 @@ public class RouteBetweenNodes {
             if (node == node2)
                 return true;
 
-            List adjacent = node.getAdjacent();
+            List adjacent = node.getAdjacents();
             nodes.addAll(adjacent);
         }
 

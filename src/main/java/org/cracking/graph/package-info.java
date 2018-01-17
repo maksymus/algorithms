@@ -50,19 +50,19 @@ class Tree {
     }
 }
 
-class Graph {
-    private List<Node> nodes = new ArrayList<>();
+class Graph<T> {
+    private List<Node<T>> nodes = new ArrayList<>();
     private boolean direct;
 
     public Graph(boolean direct) {
         this.direct = direct;
     }
 
-    public List<Node> getNodes() {
+    public List<Node<T>> getNodes() {
         return nodes;
     }
 
-    public void join(Node node1, Node node2) {
+    public void join(Node<T> node1, Node<T> node2) {
         if (node1 == node2)
             return;
 
@@ -72,11 +72,11 @@ class Graph {
             node2.join(node1);
     }
 
-    public void add(Node node) {
+    public void add(Node<T> node) {
         nodes.add(node);
     }
 
-    public void add(Node ... nodes) {
+    public void add(Node<T> ... nodes) {
         for (Node node : nodes) {
             add(node);
         }
@@ -84,26 +84,30 @@ class Graph {
 
     public static class Node<T> {
         private T value;
-        private List<Node> adjacent = new ArrayList<>();
+        private List<Node<T>> adjacents = new ArrayList<>();
 
         public Node(T value) {
             this.value = value;
         }
 
-        private void join(Node other) {
+        private void join(Node<T> other) {
             if (this == other)
                 return;
 
-            for (Node node : adjacent) {
+            for (Node node : adjacents) {
                 if (node == other)
                     return;
             }
 
-            adjacent.add(other);
+            adjacents.add(other);
         }
 
-        public List<Node> getAdjacent() {
-            return adjacent;
+        public List<Node<T>> getAdjacents() {
+            return adjacents;
+        }
+
+        public T getValue() {
+            return value;
         }
 
         @Override
