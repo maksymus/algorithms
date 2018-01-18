@@ -25,7 +25,7 @@ public class FirstCommonAncestor {
 
         Node root = node2;
 
-        Node ancestor = new FirstCommonAncestor().find(root, node4, node6);
+        Node ancestor = new FirstCommonAncestor().find(root, node1, node4);
         System.out.println(ancestor);
     }
 

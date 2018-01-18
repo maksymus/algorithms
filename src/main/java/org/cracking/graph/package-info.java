@@ -31,12 +31,20 @@ class Tree {
             this.right = right;
         }
 
-        public Node getLeft() {
+        public Node<T> getLeft() {
             return left;
         }
 
-        public Node getRight() {
+        public void setLeft(Node<T> left) {
+            this.left = left;
+        }
+
+        public Node<T> getRight() {
             return right;
+        }
+
+        public void setRight(Node<T> right) {
+            this.right = right;
         }
 
         public T getValue() {
