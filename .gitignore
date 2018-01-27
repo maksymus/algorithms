@@ -2,6 +2,7 @@
 .cache
 .classpath
 .project
+.idea
 *.swp
 target
 bin
