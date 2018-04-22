@@ -1,5 +1,6 @@
 package org.rust.arrays;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -14,11 +15,13 @@ import java.util.List;
 public class MergeOverlappingIntervals {
 	public static void main(String[] args) {
 		List<Interval> merged = merge(Arrays
-				.asList(new Interval(5, 7), new Interval(2, 4), new Interval(6, 8), new Interval(1, 3)));
+				.asList(new Interval(5, 7), new Interval(0, 4), new Interval(6, 8), new Interval(1, 3)));
 		System.out.println(merged);
 	}
 
 	public static List<Interval> merge(List<Interval> intervals) {
+		List<Interval> merged = new ArrayList<>();
+
 		Collections.sort(intervals, (i1, i2) -> {
 			if (i1.from < i2.from)
 				return -1;
@@ -36,13 +39,17 @@ public class MergeOverlappingIntervals {
 			}
 
 			if (current.to >= interval.from) {
-				current.to = interval.to;
+				current.to = current.to > interval.to ?
+						current.to : interval.to;
+			} else {
+				merged.add(current);
+				current = interval;
 			}
-
-			// TODO finish me
 		}
 
-		return intervals;
+		merged.add(current);
+
+		return merged;
 	}
 
 	private static class Interval {
