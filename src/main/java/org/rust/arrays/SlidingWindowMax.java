@@ -5,6 +5,7 @@ import org.interviewelements.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -23,48 +24,42 @@ import java.util.stream.IntStream;
  * arr[] = {8, 5, 10, 7, 9, 4, 15, 12, 90, 13}
  * k = 4
  * Output :
- * 10 10 10 15 15 90 90
+ * 10 10 10 9 15 15 90 90
  */
 public class SlidingWindowMax {
     public static void main(String[] args) {
-        System.out.println(max(new int[] {1, 2, 3, 1, 4, 5, 2, 3, 6}, 3));
-        System.out.println(max(new int[] {1, 2, 3, 4}, 10));
+        System.out.println(max(new int[] {8, 5, 10, 7, 9, 4, 15, 12, 90, 13}, 3));
+//        System.out.println(max(new int[] {1, 2, 3, 4}, 10));
     }
 
     public static List<Integer> max(int[] arr, int k) {
-        if (k < 1)
-            throw new IllegalArgumentException("should be > 0");
+        if (k < 1 || k >= arr.length)
+            throw new IllegalArgumentException("should be > 0 and < array length");
 
         if (k == 1)
             return Arrays.stream(arr).boxed().collect(Collectors.toList());
 
         List<Integer> window = new ArrayList<>();
-        int winSize = Math.min(k, arr.length);
 
-        int max = Integer.MIN_VALUE;
-        for (int i = 0; i < winSize; i++) {
-            max = Math.max(max, arr[i]);
-        }
+        int[] slide = new int[arr.length];
+        slide[0] = arr[0];
 
-        for (int i = 0; i < winSize; i++) {
-            window.add(i, max);
-        }
+        for (int i = 0; i < arr.length; i++) {
+            if (i >= k - 1)
+                window.add(i - k + 1, Math.max(slide[i - k + 1], arr[i]));
 
-        for (int i = winSize; i < arr.length; i++) {
-            int prev = window.get(i - 1);
+            int x = Math.max(i - k + 2, 0);
 
-            if (prev >= arr[i]) {
-                window.add(i, prev);
-            } else {
-                for (int j = i - winSize + 1; j < i; j++) {
-                    window.set(j, arr[i]);
+            if (arr[i] > slide[x]) {
+                for (int j = x; j < i; j++) {
+                    slide[j] = arr[i];
                 }
-
-                window.add(i, arr[i]);
+                slide[i] = arr[i];
+            } else {
+                slide[i] = arr[i];
             }
         }
 
-
-        return window.subList(0, Math.max(0, window.size() - winSize + 1));
+        return window;
     }
 }
