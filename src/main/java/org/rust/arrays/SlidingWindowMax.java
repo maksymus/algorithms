@@ -28,7 +28,7 @@ import java.util.stream.IntStream;
  */
 public class SlidingWindowMax {
     public static void main(String[] args) {
-        System.out.println(max(new int[] {8, 5, 10, 7, 9, 4, 15, 12, 90, 13}, 3));
+        System.out.println(max(new int[] {8, 5, 10, 7, 9, 4, 15, 12, 90, 13}, 4));
 //        System.out.println(max(new int[] {1, 2, 3, 4}, 10));
     }
 
@@ -42,22 +42,19 @@ public class SlidingWindowMax {
         List<Integer> window = new ArrayList<>();
 
         int[] slide = new int[arr.length];
-        slide[0] = arr[0];
-
         for (int i = 0; i < arr.length; i++) {
             if (i >= k - 1)
                 window.add(i - k + 1, Math.max(slide[i - k + 1], arr[i]));
 
-            int x = Math.max(i - k + 2, 0);
+            int slideStart = Math.max(i - k + 2, 0);
 
-            if (arr[i] > slide[x]) {
-                for (int j = x; j < i; j++) {
+            if (arr[i] > slide[slideStart]) {
+                for (int j = slideStart; j < i; j++) {
                     slide[j] = arr[i];
                 }
-                slide[i] = arr[i];
-            } else {
-                slide[i] = arr[i];
             }
+
+            slide[i] = arr[i];
         }
 
         return window;
