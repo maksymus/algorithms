@@ -3,7 +3,6 @@ package org.rust.tree;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Spliterators;
 import java.util.function.Consumer;
 
 /**
